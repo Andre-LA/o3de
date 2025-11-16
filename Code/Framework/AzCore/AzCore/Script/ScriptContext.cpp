@@ -4697,11 +4697,19 @@ LUA_API const Node* lua_getDummyNode()
 
                     for (size_t i = 0; i < method->GetNumArguments(); ++i)
                     {
-                        AZStd::string paramName = method->GetArgument(i)->m_name;
-                        // strip all qualifiers from the param name, or look it up by type in the behavior context
-                        AZ::StripQualifiers(paramName);
+                        AZStd::string paramType = method->GetArgument(i)->m_name;
+                        // strip all qualifiers from the param type, or look it up by type in the behavior context
+                        AZ::StripQualifiers(paramType);
 
-                        functionName += AZ::ReplaceCppArtifacts(paramName); // make sure param name is converted to a lua compatible name (so it looks as it will be called from Lua)
+                        const AZStd::string* paramName = method->GetArgumentName(i);
+
+                        if (paramName && !paramName->empty())
+                        {
+                            functionName += *paramName;
+                            functionName += ": ";
+                        }
+
+                        functionName += AZ::ReplaceCppArtifacts(paramType); // make sure param type is converted to a lua compatible name (so it looks as it will be called from Lua)
                         if (i != method->GetNumArguments() - 1)
                         {
                             functionName += ", ";
