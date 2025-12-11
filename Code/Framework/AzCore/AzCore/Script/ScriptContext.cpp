@@ -5,6 +5,7 @@
  * SPDX-License-Identifier: Apache-2.0 OR MIT
  *
  */
+#include "AzCore/Debug/Trace.h"
 #include <AzCore/Script/ScriptContext.h>
 #include <AzCore/Casting/numeric_cast.h>
 #include <AzCore/Memory/ChildAllocatorSchema.h>
@@ -4670,12 +4671,12 @@ LUA_API const Node* lua_getDummyNode()
                 }
 
                 LuaCaller* binder = CreateLuaCaller(behaviorContext, method);
-                if (method->m_debugDescription)
-                {
-                    binder->PushClosure(m_lua, method->m_debugDescription);
-                }
-                else
-                {
+                // if (method->m_debugDescription)
+                // {
+                //     binder->PushClosure(m_lua, method->m_debugDescription);
+                // }
+                // else
+                // {
                     // There is no substitution for developer debug description, as we will
                     // get context on the issue. When this is missing we will list the types
                     // of the parameters we expect to pass from Lua
@@ -4724,7 +4725,7 @@ LUA_API const Node* lua_getDummyNode()
                     }
 
                     binder->PushClosure(m_lua, functionName.c_str());
-                }
+                // }
             }
 
             //////////////////////////////////////////////////////////////////////////
