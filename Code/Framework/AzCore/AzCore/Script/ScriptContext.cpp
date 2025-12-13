@@ -6,6 +6,7 @@
  *
  */
 #include "AzCore/Debug/Trace.h"
+#include "AzCore/std/string/string.h"
 #include <AzCore/Script/ScriptContext.h>
 #include <AzCore/Casting/numeric_cast.h>
 #include <AzCore/Memory/ChildAllocatorSchema.h>
@@ -4722,6 +4723,12 @@ LUA_API const Node* lua_getDummyNode()
                     if (AZ::StringFunc::Replace(functionName, "ScriptDataContext", "...", true))
                     {
                         functionName.insert(0, "[=...] ");
+                    }
+
+                    if (method->m_debugDescription)
+                    {
+                        functionName += " -- ";
+                        functionName += method->m_debugDescription;
                     }
 
                     binder->PushClosure(m_lua, functionName.c_str());
