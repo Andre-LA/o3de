@@ -53,6 +53,8 @@ namespace LmbrCentral
                 ->Event("DistanceSquaredFromPoint", &ShapeComponentRequestsBus::Events::DistanceSquaredFromPoint)
                 ->Event("GetEncompassingAabb", &ShapeComponentRequestsBus::Events::GetEncompassingAabb)
                 ->Event("GenerateRandomPointInside", GenerateRandomPointInsideWrapper)
+                ->Event("GetTranslationOffset", &ShapeComponentRequestsBus::Events::GetTranslationOffset)
+                ->Event("SetTranslationOffset", &ShapeComponentRequestsBus::Events::SetTranslationOffset)
                 ;
 
             behaviorContext->Enum<(int)ShapeComponentNotifications::ShapeChangeReasons::TransformChanged>("ShapeChangeReasons_TransformChanged")
