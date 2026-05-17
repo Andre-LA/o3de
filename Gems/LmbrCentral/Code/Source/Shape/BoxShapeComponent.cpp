@@ -138,6 +138,7 @@ namespace LmbrCentral
                 ->Constructor()
                 ->Constructor<AZ::Vector3&>()
                 ->Property("Dimensions", BehaviorValueProperty(&BoxShapeConfig::m_dimensions))
+                ->Property("TranslationOffset", BehaviorValueProperty(&BoxShapeConfig::m_translationOffset))
                 ;
         }
     }
